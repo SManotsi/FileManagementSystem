@@ -1,0 +1,117 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewData["Title"] - File Management System</title>
+
+    <!-- External Stylesheets -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
+    <link rel="stylesheet" href="~/css/styles.css" />
+
+    <!-- Internal Styles -->
+    <style>
+        body {
+            overflow-x: hidden;
+        }
+        #wrapper {
+            display: flex;
+            height: 100vh;
+        }
+        #sidebar {
+            width: 250px;
+            background-color: #343a40;
+            padding: 10px;
+            overflow: hidden;
+           
+        }
+        #sidebar .sidebar-heading {
+            font-size: 1.5rem;
+            font-weight: bold;
+            padding: 15px 0;
+            border-bottom: 1px solid #495057;
+
+        }
+        #sidebar .list-group-item {
+            background-color: #343a40;
+            border: none;
+        }
+        #sidebar .list-group-item:hover {
+            background-color: #495057;
+        }
+        #page-content-wrapper {
+            flex: 1;
+        }
+        .navbar-light {
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        .toggled #sidebar {
+            display: none;
+        }
+
+    
+    </style>
+</head>
+<body>
+    <div class="d-flex" id="wrapper">
+        <!-- Sidebar -->
+        <div class="bg-dark text-white sidebar" id="sidebar">
+            <div class="sidebar-heading text-center">
+                File Management System
+            </div>
+            <div class="list-group list-group-flush">
+                <a href="@Url.Action("Index", "File")" class="list-group-item list-group-item-action text-white">
+                    <i class="fas fa-home"></i> Home
+                </a>
+                <a href="@Url.Action("Upload", "File")" class="list-group-item list-group-item-action text-white">
+                    <i class="fas fa-upload"></i> Upload File
+                </a>
+                <a href="@Url.Action("Share", "File")" class="list-group-item list-group-item-action text-white">
+                    <i class="fas fa-share-alt"></i> Share File
+                </a>
+                <a href="@Url.Action("Edit", "File")" class="list-group-item list-group-item-action text-white">
+                    <i class="fas fa-edit"></i> Edit File
+                </a>
+                <a href="@Url.Action("Delete", "File")" class="list-group-item list-group-item-action text-white">
+                    <i class="fas fa-trash-alt"></i> Delete File
+                </a>
+            </div>
+        </div>
+
+        <!-- Page Content -->
+        <div id="page-content-wrapper">
+            <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                <button class="btn btn-primary" id="menu-toggle">☰</button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav ml-auto">
+                        <li class="nav-item">
+                            <a class="nav-link" href="@Url.Action("Index", "Home")">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="@Url.Action("Logout", "Account")">Logout</a>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+
+            <div class="container-fluid mt-3">
+                @RenderBody() <!-- This is where the content of each page will be rendered -->
+            </div>
+        </div>
+    </div>
+
+    <!-- External Scripts -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.1/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <!-- Sidebar Toggle Script -->
+    <script>
+        $("#menu-toggle").click(function (e) {
+            e.preventDefault();
+            $("#wrapper").toggleClass("toggled");
+        });
+    </script>
+</body>
+</html>
