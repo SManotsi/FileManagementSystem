@@ -1,0 +1,68 @@
+﻿@model FileManagementSystem.Models.FileModel
+
+<div class="container mt-4">
+    <h2 class="text-center">Share File</h2>
+
+    <div class="card shadow-sm mt-4">
+        <div class="card-body">
+            <h4>File Details</h4>
+            <p><strong>File Name:</strong> @Model.FileName</p>
+            <p>
+                <strong>Upload Date:</strong>
+                @Model.UploadDate.HasValue
+                ? Model.UploadDate.Value.ToString("f")
+                : "Not Available"
+            </p>
+        </div>
+    </div>
+
+    <form asp-action="Share" method="post" class="mt-4">
+        <input type="hidden" asp-for="Id" />
+        <div class="form-group">
+            <label for="email" class="font-weight-bold">Recipient Email</label>
+            <input type="email" name="email" id="email" class="form-control" placeholder="Enter recipient's email address" required />
+        </div>
+        <div class="d-flex justify-content-between mt-3">
+            <button type="submit" class="btn btn-primary">Share</button>
+            <a asp-action="Index" class="btn btn-secondary">Cancel</a>
+        </div>
+    </form>
+</div>
+<style>
+    body {
+        overflow-x: hidden;
+    }
+    #wrapper {
+        display: flex;
+        height: 100vh;
+    }
+    #sidebar {
+        width: 250px;
+        background-color: #343a40;
+        padding: 10px;
+    }
+    #sidebar .sidebar-heading {
+        font-size: 1.5rem;
+        font-weight: bold;
+        padding: 15px 0;
+        border-bottom: 1px solid #495057;
+    }
+    #sidebar .list-group-item {
+        background-color: #343a40;
+        border: none;
+    }
+    #sidebar .list-group-item:hover {
+        background-color: #495057;
+    }
+    #page-content-wrapper {
+        flex: 1;
+    }
+    .navbar-light {
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+    .toggled #sidebar {
+        display: none;
+    }
+
+
+</style>
